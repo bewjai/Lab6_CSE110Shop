@@ -1,12 +1,18 @@
 // Script.js
+const list = document.getElementById("product-list"); 
 
 window.addEventListener('DOMContentLoaded', () => {
   // TODO
-  myStorage = window.localStorage;
-  if(localStorage.getItem(response == null)){
+  if(localStorage.getItem('arr') !== true){
     fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => {
+      localStorage.setItem('arr', JSON.stringify(data));
+      let arr = localStorage.getItem('arr');
+      JSON.parse(arr).forEach(element => {
+        list.appendChild(new ProductItem(element));
+      });
+    })
+    .catch(error => console.log(error));
   }
-  localStorage.setItem(response);
-});
+  });
